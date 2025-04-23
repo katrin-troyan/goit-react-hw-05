@@ -1,0 +1,9 @@
+.feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.textFeedback {
+  font-size: 18px;
+  font-weight: 400;
+}
