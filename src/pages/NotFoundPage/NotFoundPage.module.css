@@ -1,0 +1,14 @@
+.title {
+  margin-top: 20px;
+}
+.link {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  margin-top: 20px;
+}
+.link:hover {
+  text-decoration: underline;
+}
