@@ -1,6 +1,7 @@
 import MovieList from '../../components/MovieList/MovieList';
 import axios from 'axios';
 import { useState } from 'react';
+import css from './MoviesPage.module.css';
 
 export default function MoviesPage() {
   const [movies, setMovies] = useState([]);
@@ -35,9 +36,11 @@ export default function MoviesPage() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="query" autoFocus />
-        <button type="submit">Search</button>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <input className={css.input} type="text" name="query" autoFocus />
+        <button type="submit" className={css.btn}>
+          Search
+        </button>
       </form>
       <MovieList movies={movies} />
     </>

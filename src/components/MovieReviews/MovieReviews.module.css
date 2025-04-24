@@ -1,0 +1,18 @@
+.reviewsContainer {
+  margin-top: 20px;
+}
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 20px;
+}
+.reviewsItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #d36c7d;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}

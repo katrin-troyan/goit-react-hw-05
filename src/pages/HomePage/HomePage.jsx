@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import css from './HomePage.module.css';
 
 import MovieList from '../../components/MovieList/MovieList';
 
@@ -30,7 +31,7 @@ export default function HomePage() {
 
   return (
     <>
-      <h1>Trending today</h1>
+      <h1 className={css.title}>Trending today</h1>
       {error && <p>{error}</p>}
       <MovieList movies={movies} />
     </>

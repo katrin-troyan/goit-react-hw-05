@@ -1,0 +1,46 @@
+.button {
+  border-radius: 20px;
+  border: 1px solid #d36c7d;
+  width: 120px;
+  height: 40px;
+  background: #d36c7d;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.button:hover {
+  background: #fff;
+  color: #d36c7d;
+  transition: all 0.3s ease-in-out;
+}
+.infoContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.poster {
+  border-radius: 20px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.linkInfo {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+.linkInfo:hover {
+  text-decoration: underline;
+}

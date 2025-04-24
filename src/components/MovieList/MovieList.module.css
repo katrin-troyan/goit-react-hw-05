@@ -1,0 +1,15 @@
+.movieList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.movieItem {
+  justify-items: start;
+}
+.movieTitle {
+  font-weight: 600;
+  font-size: 18px;
+}
+.movieTitle:hover {
+  text-decoration: underline;
+}

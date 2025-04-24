@@ -1,0 +1,22 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin: 15px auto 40px;
+}
+
+.link {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.active {
+  color: #d36c7d;
+}

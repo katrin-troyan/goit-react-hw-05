@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import css from './MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -48,32 +49,53 @@ export default function MovieDetailsPage() {
         <p>Loading...</p>
       ) : (
         <>
-          <button type="button" onClick={handleGoBack}>
-            Go back
+          <button type="button" onClick={handleGoBack} className={css.button}>
+            ⬅ Go back
           </button>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt={movie.title}
-          />
-          <h1>{movie.title}</h1>
-          <p>User Score: {Math.round(movie.vote_average * 10)}% </p>
-          <h2>Overview</h2>
-          <p>{movie.overview}</p>
-          <h2>Genres</h2>
-          <p>{movie.genres.map(genre => genre.name).join(', ')}</p>
-          <h2>Additional information</h2>
-          <ul>
-            <li>
-              <Link to="cast" state={{ from: location.pathname }}>
-                Cast
-              </Link>
-            </li>
-            <li>
-              <Link to="reviews" state={{ from: location.pathname }}>
-                Reviews
-              </Link>
-            </li>
-          </ul>
+          <div className={css.infoContainer}>
+            <img
+              src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}
+              alt={movie.title}
+              className={css.poster}
+            />
+            <div>
+              <div className={css.info}>
+                <h1>{movie.title}</h1>
+                <p>User Score: {Math.round(movie.vote_average * 10)}% </p>
+              </div>
+              <div className={css.info}>
+                <h2>Overview</h2>
+                <p>{movie.overview}</p>
+              </div>
+              <div className={css.info}>
+                <h2>Genres</h2>
+                <p>{movie.genres.map(genre => genre.name).join(', ')}</p>
+              </div>
+              <div className={css.info}>
+                <h2>Additional information</h2>
+                <ul className={css.infoList}>
+                  <li>
+                    <Link
+                      to="cast"
+                      state={{ from: location.pathname }}
+                      className={css.linkInfo}
+                    >
+                      Cast
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="reviews"
+                      state={{ from: location.pathname }}
+                      className={css.linkInfo}
+                    >
+                      Reviews
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
           <Outlet />
         </>
       )}
