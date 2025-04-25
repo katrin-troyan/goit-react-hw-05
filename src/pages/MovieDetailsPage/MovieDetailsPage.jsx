@@ -5,7 +5,7 @@ import {
   useNavigate,
   useLocation,
 } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import css from './MovieDetailsPage.module.css';
 
@@ -15,6 +15,7 @@ export default function MovieDetailsPage() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const stateRef = useRef(location.state);
 
   useEffect(() => {
     const fetchedMovieDetails = async () => {
@@ -36,11 +37,7 @@ export default function MovieDetailsPage() {
   }, [movieId]);
 
   const handleGoBack = () => {
-    if (location.state?.from) {
-      navigate(location.state.from);
-    } else {
-      navigate('/movies');
-    }
+    navigate(stateRef.current ? stateRef.current : '/movies');
   };
 
   return (

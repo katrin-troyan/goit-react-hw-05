@@ -1,11 +1,41 @@
-import MovieList from '../../components/MovieList/MovieList';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect, use } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import MovieList from '../../components/MovieList/MovieList';
 import css from './MoviesPage.module.css';
 
 export default function MoviesPage() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      if (!query) {
+        setMovies([]);
+        return;
+      }
+      try {
+        const url = `https://api.themoviedb.org/3/search/movie?query=${query}`;
+        const options = {
+          headers: {
+            Authorization:
+              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxODMzM2Y2ZTcwZWMwNWIwN2U0YzNmZmNhYTU3YjQxZiIsIm5iZiI6MTc0NTM5NjkxNC4zMTgsInN1YiI6IjY4MDhhNGIyMjc2YmY2NGU0MWFiNTI1NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zqBRL3WS-ks21ACPtLO09_rJzvqATu4q8wxirKcw8Fk',
+          },
+        };
+        const response = await axios.get(url, options);
+        setMovies(response.data.results);
+        setError(null);
+      } catch (err) {
+        setError('Failed to load movies. Please try again later.');
+      }
+    };
+
+    fetchMovies();
+    setSearchParams({});
+    setMovies([]);
+  }, [query]);
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -15,22 +45,7 @@ export default function MoviesPage() {
       alert('Please enter a search query.');
       return;
     }
-
-    try {
-      const url = `https://api.themoviedb.org/3/search/movie?query=${searchQuery}`;
-
-      const options = {
-        headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxODMzM2Y2ZTcwZWMwNWIwN2U0YzNmZmNhYTU3YjQxZiIsIm5iZiI6MTc0NTM5NjkxNC4zMTgsInN1YiI6IjY4MDhhNGIyMjc2YmY2NGU0MWFiNTI1NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zqBRL3WS-ks21ACPtLO09_rJzvqATu4q8wxirKcw8Fk',
-        },
-      };
-      const response = await axios.get(url, options);
-      setMovies(response.data.results);
-      setError(null);
-    } catch (error) {
-      setError('Failed to load trending movies. Please try again later.');
-    }
+    setSearchParams({ query: searchQuery });
     form.reset();
   };
 
